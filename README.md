@@ -29,7 +29,22 @@ If you want to save the yield result, do it like this:
 scrapy crawl get_by_style -o rock_albums.json
 ```
 
+By default will search all the rock albums, if you want to specify one style, pass it as an 'style' argument:
+
+```
+scrapy crawl get_by_style -o Electronic_albums.json -a style=Electronic
+```
+
 You can use .json, .xml, .csv....
+
+### TODOS
+
+* Simplify style argument
+* Create Album item
+* Add more information for each album
+* Clean release date and album name to strip off the dirt
+* Save the image
+* Create new spider to scrap all the albums of a single band
 
 
 ## Built With
