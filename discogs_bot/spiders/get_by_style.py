@@ -9,8 +9,6 @@ class GetByStyleSpider(scrapy.Spider):
 
     def __init__(self, style="Rock", *args, **kwargs):
         super(GetByStyleSpider, self).__init__(*args, **kwargs)
-        print('*' * 4)
-        print(style)
         self.start_urls = [f'https://discogs.com/search/?genre_exact={style}&type=release']
 
     def parse(self, response):
@@ -35,6 +33,12 @@ class GetByStyleSpider(scrapy.Spider):
         release_date = response.xpath('//div[@class="profile"]/div[8]/a/text()').extract_first().strip()
         genre = response.xpath('//div[@itemprop="genre"]/a/text()').extract_first()
         style = response.xpath('//div[@class="profile"]/div[12]/a/text()').extract_first()
+
+        # Statistics
+        # TODO statistics
+
+        # Tracklist
+        # TODO Add tracks
 
         yield {
             'album_url': album_url,
