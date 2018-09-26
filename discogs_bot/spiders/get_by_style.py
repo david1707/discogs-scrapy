@@ -6,7 +6,12 @@ from scrapy import Request
 class GetByStyleSpider(scrapy.Spider):
     name = 'get_by_style'
     allowed_domains = ['discogs.com']
-    start_urls = ['https://discogs.com/search/?genre_exact=Rock&type=release']
+
+    def __init__(self, style="Rock", *args, **kwargs):
+        super(GetByStyleSpider, self).__init__(*args, **kwargs)
+        print('*' * 4)
+        print(style)
+        self.start_urls = [f'https://discogs.com/search/?genre_exact={style}&type=release']
 
     def parse(self, response):
         links = response.xpath('//*[contains(@class, "card card_large")]/h4/a/@href').extract()
