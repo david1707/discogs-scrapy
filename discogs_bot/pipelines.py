@@ -8,4 +8,5 @@
 
 class DiscogsBotPipeline(object):
     def process_item(self, item, spider):
+        # TODO: Release date and album sometimes need striping, sometimes not
         return item
