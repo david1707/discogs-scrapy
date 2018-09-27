@@ -41,7 +41,6 @@ You can use .json, .xml, .csv....
 
 * Simplify style argument
 * Create Album item
-* Add more information for each album
 * Clean release date and album name to strip off the dirt
 * Save the image
 * Create new spider to scrap all the albums of a single band

@@ -35,10 +35,21 @@ class GetByStyleSpider(scrapy.Spider):
         style = response.xpath('//div[@class="profile"]/div[12]/a/text()').extract_first()
 
         # Statistics
-        # TODO statistics
-
+        have = response.xpath('//a[@class="coll_num"]/text()').extract_first()
+        want = response.xpath('//a[@class="want_num"]/text()').extract_first()
+        average_rating = response.xpath('//span[@class="rating_value"]/text()').extract_first() + ' / 5'
+        
         # Tracklist
-        # TODO Add tracks
+        tracks = []
+        tracklist = response.xpath('//tr[contains(@class, "tracklist_track track")]')
+        # TODO Fix track listing
+        for track in tracklist:
+            position = track.xpath('//td[@class="tracklist_track_pos"]/text()').extract_first()
+            name = track.xpath('//span[@class="tracklist_track_title"]/text()').extract_first()
+
+            tracks.append({'position': position, 'name': name})
+
+
 
         yield {
             'album_url': album_url,
@@ -48,4 +59,8 @@ class GetByStyleSpider(scrapy.Spider):
             'release_date': release_date,
             'genre': genre,
             'style': style,
+            'have': have,
+            'want': want,
+            'average_rating': average_rating,
+            'tracks': tracks,
         }
